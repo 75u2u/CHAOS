@@ -28,3 +28,9 @@ com:
 
 eject:
 	umount /media/tsuru/SD
+
+push:
+	git add .
+	git commit -m "update"
+	git push origin master
+
