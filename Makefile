@@ -19,3 +19,12 @@ clean:
 
 run:
 	qemu-system-aarch64 -M raspi3 -kernel kernel8.img -serial null -serial stdio
+
+copy:
+	cp kernel8.img /media/tsuru/SD/.
+
+com:
+	minicom -b 115200 -D /dev/ttyUSB0
+
+eject:
+	umount /media/tsuru/SD

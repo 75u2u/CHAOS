@@ -1,5 +1,7 @@
+// RaspberryPi3 Memory Mapped I/O Base Address
 #define MMIO_BASE       0x3F000000
 
+// GPIO
 #define GPFSEL0         ((volatile unsigned int*)(MMIO_BASE+0x00200000))
 #define GPFSEL1         ((volatile unsigned int*)(MMIO_BASE+0x00200004))
 #define GPFSEL2         ((volatile unsigned int*)(MMIO_BASE+0x00200008))
@@ -18,3 +20,10 @@
 #define GPPUD           ((volatile unsigned int*)(MMIO_BASE+0x00200094))
 #define GPPUDCLK0       ((volatile unsigned int*)(MMIO_BASE+0x00200098))
 #define GPPUDCLK1       ((volatile unsigned int*)(MMIO_BASE+0x0020009C))
+
+// RNG
+#define RNG_CTRL        ((volatile unsigned int*)(MMIO_BASE+0x00104000))
+#define RNG_STATUS      ((volatile unsigned int*)(MMIO_BASE+0x00104004))
+#define RNG_DATA        ((volatile unsigned int*)(MMIO_BASE+0x00104008))
+#define RNG_INT_MASK    ((volatile unsigned int*)(MMIO_BASE+0x00104010))
+
