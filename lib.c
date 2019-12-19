@@ -70,9 +70,8 @@ unsigned int rand(unsigned int min, unsigned int max) {
 	return *RNG_DATA % (max - min) + min;
 }
 
-void on(volatile unsigned int n) {
+void on(register unsigned int n) {
     register unsigned int r;
-
 // ON
 	*GPFSEL1 = 0x01 << 18;
 	*GPSET0 = 0x01 << 16;
@@ -84,9 +83,8 @@ void on(volatile unsigned int n) {
     *GPFSEL1 = r;
 }
 
-void off(volatile unsigned int n) {
+void off(register unsigned int n) {
     register unsigned int r;
-
 // OFF
 	*GPFSEL1 = 0x01 << 18;
 	*GPCLR0 = 0x01 << 16;
@@ -96,4 +94,13 @@ void off(volatile unsigned int n) {
     r&=~((7<<12)|(7<<15)); // gpio14, gpio15
     r|=(2<<12)|(2<<15);    // alt5
     *GPFSEL1 = r;
+}
+
+void aa(void) {
+	puts("  _____ _    _          ____   _____ \n");
+	puts(" / ____| |  | |   /\   / __ \ / ____|\n");
+	puts("| |    | |__| |  /  \ | |  | | (___  \n");
+	puts("| |    |  __  | / /\ \| |  | |\___ \ \n");
+	puts("| |____| |  | |/ ____ \ |__| |____) |\n");
+	puts(" \_____|_|  |_/_/    \_\____/|_____/ \n\n");
 }

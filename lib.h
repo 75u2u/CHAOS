@@ -7,5 +7,7 @@ int strcmp(const char *s1, const char *s2);
 int strncmp(const char *s1, const char *s2, int len);
 void rand_init(void);
 unsigned int rand(unsigned int min, unsigned int max);
-void on(volatile unsigned int n);
-void off(volatile unsigned int n);
+void on(register unsigned int n);
+void off(register unsigned int n);
+void aa(void);
+

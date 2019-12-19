@@ -43,6 +43,14 @@ wget https://ftpmirror.gnu.org/gmp/gmp-6.1.2.tar.bz2
 wget https://ftpmirror.gnu.org/mpc/mpc-1.1.0.tar.gz
 wget https://gcc.gnu.org/pub/gcc/infrastructure/isl-0.18.tar.bz2
 wget https://gcc.gnu.org/pub/gcc/infrastructure/cloog-0.18.1.tar.gz
+
+sudo apt install g++-arm-linux-gnueabihf
+sudo apt install qemu-user-binfmt
+sudo apt install g++-aarch64-linux-gnu qemu-user-binfmt
+sudo ln -s /usr/aarch64-linux-gnu/lib/ /lib/aarch64-linux-gnu
+sudo ln -s /lib/aarch64-linux-gnu/ld-2.23.so /lib/ld-linux-aarch64.so.1
+
+sudo apt-get install minicom
 ```
 3. ダウンロードしたファイルを解凍します．  
 Unzip the downloaded files.

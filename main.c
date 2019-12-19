@@ -9,7 +9,6 @@ int main() {
 	init();
 	rand_init();
 	puts("\nCHAOS started\n");
-
     while(1) {
 		puts("> ");
 		gets(buf);
