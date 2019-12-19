@@ -1,7 +1,7 @@
 #include "gpio.h"
 #include "mbox.h"
 
-// mini UART レジスタ
+// mini UART register
 #define AUX_ENABLE      ((volatile unsigned int*)(MMIO_BASE+0x00215004))
 #define AUX_MU_IO       ((volatile unsigned int*)(MMIO_BASE+0x00215040))
 #define AUX_MU_IER      ((volatile unsigned int*)(MMIO_BASE+0x00215044))
@@ -15,7 +15,7 @@
 #define AUX_MU_STAT     ((volatile unsigned int*)(MMIO_BASE+0x00215064))
 #define AUX_MU_BAUD     ((volatile unsigned int*)(MMIO_BASE+0x00215068))
 
-// PL011 UART レジスタ
+// PL011 UART register
 #define UART0_DR        ((volatile unsigned int*)(MMIO_BASE+0x00201000))
 #define UART0_FR        ((volatile unsigned int*)(MMIO_BASE+0x00201018))
 #define UART0_IBRD      ((volatile unsigned int*)(MMIO_BASE+0x00201024))
@@ -25,7 +25,7 @@
 #define UART0_IMSC      ((volatile unsigned int*)(MMIO_BASE+0x00201038))
 #define UART0_ICR       ((volatile unsigned int*)(MMIO_BASE+0x00201044))
 
-// GPIO, ボーレート設定(115200 8N1)
+// GPIO (115200 8N1)
 void uart_init() {
     register unsigned int r;
 
@@ -71,13 +71,11 @@ void uart_init() {
     *UART0_CR = 0x301;     // enable Tx, Rx, FIFO
 }
 
-// 文字送信
 void uart_send(unsigned int c) {
     do{asm volatile("nop");}while(!(*AUX_MU_LSR&0x20));
     *AUX_MU_IO=c;
 }
 
-// 文字読み取り
 char uart_getc() {
     char r;
     do{asm volatile("nop");}while(!(*AUX_MU_LSR&0x01));
@@ -85,7 +83,6 @@ char uart_getc() {
     return r=='\r'?'\n':r;
 }
 
-// 文字列表示
 void uart_puts(char *s) {
     while(*s) {
         if(*s=='\n')
@@ -94,7 +91,6 @@ void uart_puts(char *s) {
     }
 }
 
-// 16進表示
 void uart_hex(unsigned int d) {
     unsigned int n;
     int c;
