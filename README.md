@@ -105,17 +105,25 @@ aarch64-elf-cpp        aarch64-elf-gcc-nm     aarch64-elf-gprof       aarch64-el
 ## Usage
 
 CHAOS のビルド  
-Building CHAOS
+Build CHAOS
 ```
 make
 ```
 QEMU上でエミュレーション  
-Emulation on QEMU
+Emulate on QEMU
 ```
 make run
 ```
+SDカードにCHAOSを書き込む
+Write CHAOS into SD card
+```
+cp kernel8.img /media/USERNAME/SD/.
+cp bootcode.bin /media/USERNAME/SD/.
+cp config.txt /media/USERNAME/SD/.
+cp start.elf /media/USERNAME/SD.
+```
 ラズベリーパイ3と通信  
-Communication with Raspberry Pi 3
+Communicate with Raspberry Pi 3
 ```
 make com
 ```
