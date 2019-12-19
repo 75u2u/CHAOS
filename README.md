@@ -114,7 +114,7 @@ Emulate on QEMU
 ```
 make run
 ```
-SDカードにCHAOSを書き込む
+SDカードにCHAOSを書き込む  
 Write CHAOS into SD card
 ```
 cp kernel8.img /media/USERNAME/SD/.
