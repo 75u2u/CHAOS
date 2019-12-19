@@ -1,6 +1,9 @@
 # CHAOS
 Common Hackable Adaptable Operating System
 
+## Screenshots
+![screenshot](https://github.com/75u2u/CHAOS/img/screenshot.png)
+
 ## What's this ?
 このレポジトリには2019年のSecHack365で開発しているOS（CHAOS）のコードが入っています．CHAOSはKL-01ライセンスなので自由に改変してください．
 
