@@ -3,6 +3,7 @@
 #include "gpio.h"
 
 int main() {
+	int i;
 	char c;
 	static char buf[64];
 
@@ -10,7 +11,9 @@ int main() {
 	rand_init();
 	puts("\nCHAOS started\n");
     while(1) {
-		puts("> ");
+		puts(">");
+		puts(" ");
+		for(i=0;i<=1000000;i++){}
 		gets(buf);
 		if(!strncmp(buf, "echo", 4)) {
 			puts(buf + 5);
@@ -30,12 +33,12 @@ int main() {
 			puts("GPIO ");
 			puts((buf + 3));
 			puts(" ON!\n");
-			on((volatile unsigned int)(buf + 3));
+			on((unsigned int)(buf + 3));
 		} else if(!strncmp(buf, "off", 3)) {
 			puts("GPIO ");
 			puts(buf + 4);
 			puts(" OFF!\n");
-			off((volatile unsigned int)(buf + 4));
+			off((unsigned int)(buf + 4));
     	} else {
 			puts(buf);
 			puts(" is ");

@@ -22,6 +22,9 @@ run:
 
 copy:
 	cp kernel8.img /media/tsuru/SD/.
+	cp bootcode.bin /media/tsuru/SD/.
+	cp start.elf /media/tsuru/SD/.
+	cp config.txt /media/tsuru/SD/.
 
 com:
 	minicom -b 115200 -D /dev/ttyUSB0

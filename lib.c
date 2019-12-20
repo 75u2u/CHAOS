@@ -9,7 +9,8 @@ void init(void) {
 int putc(unsigned char c) {
 	if (c == '\n')
 		uart_send('\r');
-	uart_send(c);
+	if (c != "")
+		uart_send(c);
 	return 0;
 }
 
@@ -70,7 +71,7 @@ unsigned int rand(unsigned int min, unsigned int max) {
 	return *RNG_DATA % (max - min) + min;
 }
 
-void on(register unsigned int n) {
+void on(unsigned int n) {
     register unsigned int r;
 // ON
 	*GPFSEL1 = 0x01 << 18;
@@ -83,7 +84,7 @@ void on(register unsigned int n) {
     *GPFSEL1 = r;
 }
 
-void off(register unsigned int n) {
+void off(unsigned int n) {
     register unsigned int r;
 // OFF
 	*GPFSEL1 = 0x01 << 18;
