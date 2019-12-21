@@ -50,7 +50,7 @@ sudo apt install g++-aarch64-linux-gnu qemu-user-binfmt
 sudo ln -s /usr/aarch64-linux-gnu/lib/ /lib/aarch64-linux-gnu
 sudo ln -s /lib/aarch64-linux-gnu/ld-2.23.so /lib/ld-linux-aarch64.so.1
 
-sudo apt-get install minicom
+sudo apt install minicom
 ```
 3. ダウンロードしたファイルを解凍します．  
 Unzip the downloaded files.
