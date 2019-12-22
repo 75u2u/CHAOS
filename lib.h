@@ -9,5 +9,6 @@ void rand_init(void);
 unsigned int rand(unsigned int min, unsigned int max);
 void on(unsigned int n);
 void off(unsigned int n);
-void aa(void);
-
+void in(void);
+void start(void);
+void help(void);
