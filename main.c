@@ -50,8 +50,7 @@ int main() {
 //				wait_msec(100000000);
 			}
 		} else if(!strcmp(buf, "help")) {
-			puts("help\n");
-			puts("");
+				help();
     	} else {
 			puts(buf);
 			puts(" is ");
