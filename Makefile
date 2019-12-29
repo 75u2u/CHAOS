@@ -1,6 +1,6 @@
 SRCS = $(wildcard *.c)
 OBJS = $(SRCS:.c=.o)
-CFLAGS = -Wall -O2 -ffreestanding -nostdinc -nostdlib -nostartfiles
+CFLAGS = -Wall -O2 -ffreestanding -nostdinc -nostdlib -nostartfiles -fno-stack-protector
 
 all: clean kernel8.img
 
@@ -10,8 +10,11 @@ start.o: start.S
 %.o: %.c
 	/usr/local/cross-compiler/bin/aarch64-elf-gcc $(CFLAGS) -c $< -o $@
 
-kernel8.img: start.o $(OBJS)
-	/usr/local/cross-compiler/bin/aarch64-elf-ld -nostdlib -nostartfiles start.o $(OBJS) -T link.ld -o kernel8.elf
+font.o: font.psf
+	/usr/local/cross-compiler/bin/aarch64-elf-ld -r -b binary -o font.o font.psf
+
+kernel8.img: start.o font.o $(OBJS)
+	/usr/local/cross-compiler/bin/aarch64-elf-ld -nostdlib -nostartfiles start.o font.o $(OBJS) -T link.ld -o kernel8.elf
 	/usr/local/cross-compiler/bin/aarch64-elf-objcopy -O binary kernel8.elf kernel8.img
 
 clean:

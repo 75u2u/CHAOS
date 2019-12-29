@@ -2,18 +2,26 @@
 #include "power.h"
 #include "gpio.h"
 #include "delays.h"
+#include "mbox.h"
 
 int main() {
 	int i;
 	int j;
 	char c;
 	static char buf[64];
+	int count = 0;
 
 	init();
 	rand_init();
+//	display_fill();
+	lfb_init();
+	lfb_print(0, count, "Hello World!");
+	count++;
+//	lfb_print(0, 1, "Let me just step right in\n");
 	start();
     while(1) {
 		puts(">");
+		lfb_print(0, count, ">");
 		puts(" ");
 		gets(buf);
 		if(!strncmp(buf, "echo", 4)) {
@@ -54,8 +62,10 @@ int main() {
     	} else {
 			puts(buf);
 			puts(" is ");
-			puts("unknown command.\n");
+			puts("unknown\n");
+			//puts("I'm afraid I can't do that.\n");
     	}
+		count++;
     }
 	puts("Bye!\n");
 	return 0;

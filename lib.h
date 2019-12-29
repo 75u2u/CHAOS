@@ -12,3 +12,5 @@ void off(unsigned int n);
 void in(void);
 void start(void);
 void help(void);
+void display_init(void);
+void display_fill(void);
