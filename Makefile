@@ -10,12 +10,16 @@ start.o: start.S
 %.o: %.c
 	/usr/local/cross-compiler/bin/aarch64-elf-gcc $(CFLAGS) -c $< -o $@
 
-font.o: font.psf
-	/usr/local/cross-compiler/bin/aarch64-elf-ld -r -b binary -o font.o font.psf
+#font.o: font.psf
+#	/usr/local/cross-compiler/bin/aarch64-elf-ld -r -b binary -o font.o font.psf
 
-kernel8.img: start.o font.o $(OBJS)
-	/usr/local/cross-compiler/bin/aarch64-elf-ld -nostdlib -nostartfiles start.o font.o $(OBJS) -T link.ld -o kernel8.elf
+kernel8.img: start.o $(OBJS)
+	/usr/local/cross-compiler/bin/aarch64-elf-ld -nostdlib -nostartfiles start.o $(OBJS) -T link.ld -o kernel8.elf
 	/usr/local/cross-compiler/bin/aarch64-elf-objcopy -O binary kernel8.elf kernel8.img
+
+#kernel8.img: start.o font.o $(OBJS)
+#	/usr/local/cross-compiler/bin/aarch64-elf-ld -nostdlib -nostartfiles start.o font.o $(OBJS) -T link.ld -o kernel8.elf
+#	/usr/local/cross-compiler/bin/aarch64-elf-objcopy -O binary kernel8.elf kernel8.img
 
 clean:
 	rm kernel8.elf *.o >/dev/null 2>/dev/null || true

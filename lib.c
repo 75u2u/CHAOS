@@ -7,30 +7,30 @@ void init(void) {
 	uart_init();
 }
 
-int putc(unsigned char c) {
+int putc(int c) {
 	if (c == '\n')
 		uart_send('\r');
-	if (c != "")
+	if (c != '\0')
 		uart_send(c);
 	return 0;
 }
 
-unsigned char getc(void) {
-	unsigned char c = uart_getc();
+int getc(void) {
+	int c = uart_getc();
 	c = (c == '\r') ? '\n' : c;
 	putc(c);
 	return c;
 }
 
-int puts(unsigned char *str) {
+int puts(const char *str) {
 	while (*str)
 		putc(*(str++));
 	return 0;
 }
 
-int gets(unsigned char *buf) {
+int gets(char *buf) {
 	int i = 0;
-	unsigned char c;
+	int c;
 	do {
 		c = getc();
 		if (c == '\n')
@@ -72,7 +72,7 @@ unsigned int rand(unsigned int min, unsigned int max) {
 	return *RNG_DATA % (max - min) + min;
 }
 
-void on(unsigned int n) {
+void on(int n) {
     register unsigned int r;
 // ON
 	*GPFSEL1 = 0x01 << 18;
@@ -85,7 +85,7 @@ void on(unsigned int n) {
     *GPFSEL1 = r;
 }
 
-void off(unsigned int n) {
+void off(int n) {
     register unsigned int r;
 // OFF
 	*GPFSEL1 = 0x01 << 18;
@@ -141,6 +141,7 @@ void help(void) {
 	puts("■■■■■■■ ■■ ■    ■■■  ■  ■\n");
 }
 
+/*
 void display_init(void) {
 }
 
@@ -171,3 +172,5 @@ void display_fill(void) {
 	boxfill8(vram, COL8_FFFFFF, pitch, bpp, x - 47, y -  3, x -  4, y -  3);
 	boxfill8(vram, COL8_FFFFFF, pitch, bpp, x -  3, y - 24, x -  3, y -  3);
 }
+
+*/

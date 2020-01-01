@@ -44,7 +44,7 @@ void mbox_write(unsigned char ch);
 int mbox_read(unsigned char ch);
 //void lfd_init(fb_info_t *fb_info);
 void lfd_init(void);
-static inline void *coord2ptr(unsigned char *vram,unsigned int pitch,unsigned int bpp,int x,int y);
+//static inline void *coord2ptr(unsigned char *vram,unsigned int pitch,unsigned int bpp,int x,int y);
 void boxfill8(unsigned char *vram,unsigned int c,unsigned int pitch,unsigned int bpp,int x0, int y0, int x1, int y1);
 
 void lfb_print(int x, int y, char *s);

@@ -3,25 +3,24 @@
 #include "gpio.h"
 #include "delays.h"
 #include "mbox.h"
+#include "uart.h"
 
 int main() {
 	int i;
 	int j;
-	char c;
-	static char buf[64];
+	char buf[64];
 	int count = 0;
 
 	init();
 	rand_init();
 //	display_fill();
-	lfb_init();
-	lfb_print(0, count, "Hello World!");
+//	lfb_print(0, count, "Hello World!");
 	count++;
 //	lfb_print(0, 1, "Let me just step right in\n");
 	start();
     while(1) {
 		puts(">");
-		lfb_print(0, count, ">");
+//		lfb_print(0, count, ">");
 		puts(" ");
 		gets(buf);
 		if(!strncmp(buf, "echo", 4)) {
@@ -42,18 +41,18 @@ int main() {
 			puts("GPIO");
 //			puts(buf + 3);
 			puts(" ON!\n");
-			on((unsigned int)(buf + 3));
+			on(*buf + 3);
 		} else if(!strncmp(buf, "off", 3)) {
 			puts("GPIO");
 //			puts(buf + 4);
 			puts(" OFF!\n");
-			off((unsigned int)(buf + 4));
+			off(*buf + 4);
 		} else if(!strcmp(buf, "led")) {
 			for(i=0;i<=1000;i++) {
-				on((unsigned int)16);
+				on(16);
 				for(j=0;j<=100000;j++){ puts(""); }
 //				wait_msec(100000000);
-				off((unsigned int)16);
+				off(16);
 				for(j=0;j<=100000;j++){ puts(""); }
 //				wait_msec(100000000);
 			}
