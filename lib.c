@@ -98,10 +98,6 @@ void off(int n) {
     *GPFSEL1 = r;
 }
 
-void in() {
-
-}
-
 void start(void) {
 	puts("  _|_|_|  _|    _|    _|_|      _|_|      _|_|_|  \n");
 	puts("_|        _|    _|  _|    _|  _|    _|  _|        \n");
@@ -140,37 +136,3 @@ void help(void) {
 	puts("■     ■ ■■     ■■  ■■   ■\n");
 	puts("■■■■■■■ ■■ ■    ■■■  ■  ■\n");
 }
-
-/*
-void display_init(void) {
-}
-
-void display_fill(void) {
-	fb_info_t fb_info = {640, 400, 640, 400, 0, 16, 0, 0, 0, 0};
-	lfb_init(&fb_info);
-
-	unsigned char *vram  = fb_info.buf_addr;
-	unsigned int  pitch  = fb_info.row_bytes;
-	unsigned int  bpp    = fb_info.bpp;
-	unsigned int  x = fb_info.display_w;
-	unsigned int  y = fb_info.display_h;
-
-	boxfill8(vram, COL8_008484, pitch, bpp,  0,     0,      x -  1, y - 29);
-	boxfill8(vram, COL8_C6C6C6, pitch, bpp,  0,     y - 28, x -  1, y - 28);
-	boxfill8(vram, COL8_FFFFFF, pitch, bpp,  0,     y - 27, x -  1, y - 27);
-	boxfill8(vram, COL8_C6C6C6, pitch, bpp,  0,     y - 26, x -  1, y -  1);
-
-	boxfill8(vram, COL8_FFFFFF, pitch, bpp,  3,     y - 24, 59,     y - 24);
-	boxfill8(vram, COL8_FFFFFF, pitch, bpp,  2,     y - 24,  2,     y -  4);
-	boxfill8(vram, COL8_848484, pitch, bpp,  3,     y -  4, 59,     y -  4);
-	boxfill8(vram, COL8_848484, pitch, bpp, 59,     y - 23, 59,     y -  5);
-	boxfill8(vram, COL8_000000, pitch, bpp,  2,     y -  3, 59,     y -  3);
-	boxfill8(vram, COL8_000000, pitch, bpp, 60,     y - 24, 60,     y -  3);
-
-	boxfill8(vram, COL8_848484, pitch, bpp, x - 47, y - 24, x -  4, y - 24);
-	boxfill8(vram, COL8_848484, pitch, bpp, x - 47, y - 23, x - 47, y -  4);
-	boxfill8(vram, COL8_FFFFFF, pitch, bpp, x - 47, y -  3, x -  4, y -  3);
-	boxfill8(vram, COL8_FFFFFF, pitch, bpp, x -  3, y - 24, x -  3, y -  3);
-}
-
-*/

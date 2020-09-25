@@ -1,2 +1,7 @@
 kernel_old=1
 disable_commandline_tags=1
+# ARMコアをAArch64で起動させる
+arm_control=0x200
+
+# UART有効化
+enable_uart=1

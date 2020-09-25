@@ -9,8 +9,5 @@ void rand_init(void);
 unsigned int rand(unsigned int min, unsigned int max);
 void on(int n);
 void off(int n);
-void in(void);
 void start(void);
 void help(void);
-void display_init(void);
-void display_fill(void);

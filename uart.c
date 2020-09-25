@@ -29,18 +29,17 @@
 void uart_init() {
     register unsigned int r;
 
-    /* initialize UART */
-    *UART0_CR = 0;         // turn off UART0
+    *UART0_CR = 0;
 
-    /* set up clock for consistent divisor values */
+    // クロック設定
     mbox[0] = 9*4;
     mbox[1] = MBOX_REQUEST;
-    mbox[2] = MBOX_TAG_SETCLKRATE; // set clock rate
+    mbox[2] = MBOX_TAG_SETCLKRATE; // クロックレート
     mbox[3] = 12;
     mbox[4] = 8;
-    mbox[5] = 2;           // UART clock
+    mbox[5] = 2;           // UART クロック
     mbox[6] = 4000000;     // 4Mhz
-    mbox[7] = 0;           // clear turbo
+    mbox[7] = 0;           // turbo クリア
     mbox[8] = MBOX_TAG_LAST;
     mbox_call(MBOX_CH_PROP);
 
@@ -52,19 +51,20 @@ void uart_init() {
     *AUX_MU_IER = 0;
     *AUX_MU_IIR = 0xc6;    // 割り込み 不可
     *AUX_MU_BAUD = 270;    // ボーレート 115200
+
     // GPIO設定
     r=*GPFSEL1;
     r&=~((7<<12)|(7<<15)); // gpio14, gpio15
     r|=(2<<12)|(2<<15);    // alt5
     *GPFSEL1 = r;
-    *GPPUD = 0;            // pins 14 and 15
+    *GPPUD = 0;            // pin14,15
     r=150; while(r--) { asm volatile("nop"); }
     *GPPUDCLK0 = (1<<14)|(1<<15);
     r=150; while(r--) { asm volatile("nop"); }
-    *GPPUDCLK0 = 0;        // GPIO初期化
+    *GPPUDCLK0 = 0;        // GPIO 初期化
     *AUX_MU_CNTL = 3;      // Tx, Rx 許可
 
-    *UART0_ICR = 0x7FF;    // clear interrupts
+    *UART0_ICR = 0x7FF;    // 割り込み クリア
     *UART0_IBRD = 2;       // 115200 baud
     *UART0_FBRD = 0xB;
     *UART0_LCRH = 0b11<<5; // 8n1
@@ -95,7 +95,7 @@ void uart_hex(unsigned int d) {
     unsigned int n;
     int c;
     for(c=28;c>=0;c-=4) {
-        // get highest tetrad
+        // 4つ組
         n=(d>>c)&0xF;
         // 0-9 => '0'-'9', 10-15 => 'A'-'F'
         n+=n>9?0x37:0x30;
